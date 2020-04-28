@@ -1,6 +1,7 @@
 ## 设置Win10任务栏按钮为 从不合并，隐藏标签
 
-> 本文为翻译 ，适当做了些意译，根据东西思维差异作出一定改动。原文请参见：[Make win10 taskbar buttons Never combine, hide labels](https://gist.github.com/blole/428d67218642379489fe)
+> 本文为翻译 ，适当做了些意译，根据东西思维差异作出一定改动。
+> 原文：[Make win10 taskbar buttons Never combine, hide labels](https://gist.github.com/blole/428d67218642379489fe)
 
 微软官方在`设置`->`个性化`->`任务栏`页面的下拉菜单`合并任务栏按钮`中并未提供`从不合并，隐藏标签`选项，而是提供了以下3个选项：
 
@@ -11,9 +12,9 @@
 从不 | 2 | 0 | 0
 
 > 译者注：为便于理解，两个表头未予翻译，下同。若实难理解，可参考：hide bit = 隐藏（控制）位、combine bit = 合并（控制）位。
-> 也可通过右键单击任务栏并选择`任务栏设置`来访问
+> 也可通过右键单击任务栏并选择`任务栏设置`来访问`合并任务栏按钮`
 
-通过修改该下拉菜单，将会修改以下注册表项：
+通过选择该下拉菜单的选项，将会修改以下注册表项（修改值参考上表）：
 ```
 HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarGlomLevel
 ```
