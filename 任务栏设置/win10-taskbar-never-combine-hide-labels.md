@@ -1,28 +1,32 @@
-## Make win10 taskbar buttons Never combine, hide labels
+## 设置Win10任务栏按钮为 从不合并，隐藏标签
 
-> Forward from: https://gist.github.com/blole/428d67218642379489fe
+> 本文为翻译 ，适当做了些意译，根据事实作出少许修改。原文请参见：[Make win10 taskbar buttons Never combine, hide labels](https://gist.github.com/blole/428d67218642379489fe)
 
-Normally, this option isn't available, and the valid options for how the taskbar button should behave are:
+微软官方并未提供此选项，任务栏按钮的行为方式有效的选项为：
 
-option | registry value	| hide bit | combine bit
+设置选项 | registry value	| hide bit | combine bit
 -|:-:|:-:|:-:
-Never combine | 2 | 0 | 0
-Combine when taskbar is full | 1 | 0 | 1
-Always combine, hide labels | 0 | 1 | 1
+始终合并按钮 | 0 | 1 | 1
+任务栏已满时 | 1 | 0 | 1
+从不 | 2 | 0 | 0
 
-These options are set in `Taskbar and Start Menu Properties`, accessible by right clicking the taskbar and selecting Properties.
+> 为便于理解，3个表头未予翻译，下同。若实难理解，可参考：注册表值、隐藏（控制）位、合并（控制）位。
 
-Changing the option will modify the registry keys 
+这些选项在下拉菜单`合并任务栏按钮`中设置，可通过右键单击任务栏并选择`任务栏设置`来访问。
+
+通过修改该下拉菜单，将会修改以下注册表项：
 ```
 HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarGlomLevel
 ```
-and
+和
 ```
 HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\MMTaskbarGlomLevel
 ```
 where the first controls the taskbar on your main screen, and the second on all other screens.
+前者控制主显示器上的任务栏，后者控制所有其它显示器上的任务栏。
+> 单显示器用户看第一个就好
 
-These registry values are later read and translated into a hide bit and combine bit by explorer.exe. The function responsible for that translation looks like this:
+这些注册表值随后会被 explorer.exe 进程读取并转换为 hide bit 和 combine bit 。负责该转换的函数如下所示：
 
 ```Assembly
 0x7FF69EA67590:
@@ -57,13 +61,15 @@ explorer.exe+575F2 - EB EC                 - jmp explorer.exe+575E0
 ```
 
 Now, we'd like to "Never combine, hide labels", one way to achieve this is to modify the bits set by one of the existing options, which is what I've done. Changing the instruction
+现在，我们的需求是`从不合并，隐藏标签`，一种实现方法是修改某一现有选项的 hide bit 和 combine bit，这是我目前的选择：
+将指令
 
 ```
 explorer.exe+575ED - BB 01000000           - mov ebx,00000001
 ```
-to
+修改为
 ```
 explorer.exe+575ED - BB 02000000           - mov ebx,00000002
 ```
 
-This replaces the option `Combine when taskbar is full` with the behavior we want.
+当我们再选择`任务栏已满时`选项时，实际上已经是`从不合并，隐藏标签`功能了。
