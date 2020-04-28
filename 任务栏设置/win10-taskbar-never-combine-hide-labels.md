@@ -22,7 +22,7 @@ HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\Ta
 ```
 HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\MMTaskbarGlomLevel
 ```
-where the first controls the taskbar on your main screen, and the second on all other screens.
+
 前者控制主显示器上的任务栏，后者控制所有其它显示器上的任务栏。
 > 译者注：单显示器用户看第一个就好
 
