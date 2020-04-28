@@ -77,4 +77,4 @@ explorer.exe+575ED - BB 02000000           - mov ebx,00000002
 
 这一操作会使下拉菜单`合并任务栏按钮`中`任务栏已满时`选项的实际功能变更为`从不合并，隐藏标签`功能。
 <br><br><br>
-可实现`从不合并，隐藏标签`的第三方工具：[7+ Taskbar Tweaker](http://rammichael.com/7-taskbar-tweaker)
+可实现`从不合并，隐藏标签`的第三方工具：[7+ Taskbar Tweaker](http://rammichael.com/7-taskbar-tweaker) （官方支持中文）
