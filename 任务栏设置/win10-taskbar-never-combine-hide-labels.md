@@ -10,7 +10,7 @@
 任务栏已满时 | 1 | 0 | 1
 从不 | 2 | 0 | 0
 
-> 为便于理解，3个表头未予翻译，下同。若实难理解，可参考：注册表值、隐藏（控制）位、合并（控制）位。
+> 译者注：为便于理解，3个表头未予翻译，下同。若实难理解，可参考：注册表值、隐藏（控制）位、合并（控制）位。
 
 这些选项在下拉菜单`合并任务栏按钮`中设置，可通过右键单击任务栏并选择`任务栏设置`来访问。
 
@@ -24,7 +24,7 @@ HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\MM
 ```
 where the first controls the taskbar on your main screen, and the second on all other screens.
 前者控制主显示器上的任务栏，后者控制所有其它显示器上的任务栏。
-> 单显示器用户看第一个就好
+> 译者注：单显示器用户看第一个就好
 
 这些注册表值随后会被 explorer.exe 进程读取并转换为 hide bit 和 combine bit 。负责该转换的函数如下所示：
 
@@ -60,8 +60,7 @@ explorer.exe+575ED - BB 01000000           - mov ebx,00000001
 explorer.exe+575F2 - EB EC                 - jmp explorer.exe+575E0
 ```
 
-Now, we'd like to "Never combine, hide labels", one way to achieve this is to modify the bits set by one of the existing options, which is what I've done. Changing the instruction
-现在，我们的需求是`从不合并，隐藏标签`，一种实现方法是修改某一现有选项的 hide bit 和 combine bit，这是我目前的选择：
+现在，我们的需求是`从不合并，隐藏标签`，一种实现方法是修改下拉菜单`合并任务栏按钮`中某一现有选项的 hide bit 和 combine bit，这是我目前的选择：
 将指令
 
 ```
@@ -72,4 +71,4 @@ explorer.exe+575ED - BB 01000000           - mov ebx,00000001
 explorer.exe+575ED - BB 02000000           - mov ebx,00000002
 ```
 
-当我们再选择`任务栏已满时`选项时，实际上已经是`从不合并，隐藏标签`功能了。
+这一操作会使下拉菜单`合并任务栏按钮`中`任务栏已满时`选项的实际功能变更为`从不合并，隐藏标签`功能。
