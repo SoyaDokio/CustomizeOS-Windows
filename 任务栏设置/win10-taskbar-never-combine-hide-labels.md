@@ -14,9 +14,9 @@
 > 译者注：为便于理解，两个表头未予翻译，下同。若实难理解，可参考：hide bit = 隐藏（控制）位、combine bit = 合并（控制）位。
 > 也可通过右键单击任务栏并选择`任务栏设置`来访问`合并任务栏按钮`
 
-![从不](https://github.com/SoyaDokio/CustomizeOS-Windows/blob/master/res/img/%E4%BB%8E%E4%B8%8D.png)
-
 ![始终合并按钮](https://github.com/SoyaDokio/CustomizeOS-Windows/blob/master/res/img/%E5%A7%8B%E7%BB%88%E5%90%88%E5%B9%B6%E6%8C%89%E9%92%AE.png)
+
+![从不](https://github.com/SoyaDokio/CustomizeOS-Windows/blob/master/res/img/%E4%BB%8E%E4%B8%8D.png)
 
 通过选择该下拉菜单的选项，将会修改以下注册表项（修改值参考上表）：
 ```
