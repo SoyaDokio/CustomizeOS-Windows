@@ -1,5 +1,5 @@
 ; 修改任务栏中应用程序的图标宽度，以达到隐藏文字仅显示ICON的效果
 Windows Registry Editor Version 5.00
 [HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics]
-; 32适用于1366x768
+; Win7上，值设为32最适合1366x768分辨率
 "MinWidth"="32"

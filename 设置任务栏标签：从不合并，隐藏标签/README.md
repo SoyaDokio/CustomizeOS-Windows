@@ -1,7 +1,9 @@
-## 设置Win10任务栏按钮为 从不合并，隐藏标签
+## 设置任务栏标签：从不合并，隐藏标签
 
 > 本文为翻译 ，适当做了些意译，根据东西思维差异作出一定改动。
 > 原文：[Make win10 taskbar buttons Never combine, hide labels](https://gist.github.com/blole/428d67218642379489fe)
+
+> 本文仅论述Windows10系统下的情况
 
 微软官方在`设置`->`个性化`->`任务栏`页面的下拉菜单`合并任务栏按钮`中并未提供`从不合并，隐藏标签`选项，而是提供了以下3个选项：
 
@@ -12,25 +14,26 @@
 从不 | 2 | 0 | 0
 
 > 译者注：为便于理解，两个表头未予翻译，下同。若实难理解，可参考：hide bit = 隐藏（控制）位、combine bit = 合并（控制）位。
-> 也可通过右键单击任务栏并选择`任务栏设置`来访问`合并任务栏按钮`
+> 也可通过右键单击任务栏并选择 `任务栏设置` 来访问 `合并任务栏按钮`
 
-![始终合并按钮](https://github.com/SoyaDokio/CustomizeOS-Windows/blob/master/res/img/%E5%A7%8B%E7%BB%88%E5%90%88%E5%B9%B6%E6%8C%89%E9%92%AE.png)
+![始终合并按钮](https://user-images.githubusercontent.com/16408325/84461423-044aa600-ac9f-11ea-89eb-cb3099ad4fb8.png)
 
-![从不](https://github.com/SoyaDokio/CustomizeOS-Windows/blob/master/res/img/%E4%BB%8E%E4%B8%8D.png)
+![从不](https://user-images.githubusercontent.com/16408325/84461426-057bd300-ac9f-11ea-95bc-cf35e3a74c7b.png)
 
 通过选择该下拉菜单的选项，将会修改以下注册表项（修改值参考上表）：
-```
+```reg
 HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarGlomLevel
 ```
 和
-```
+```reg
 HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\MMTaskbarGlomLevel
 ```
 
 前者控制主显示器上的任务栏，后者控制所有其它显示器上的任务栏。
+
 > 译者注：单显示器用户看第一个就好
 
-这些注册表值随后会被 explorer.exe 进程读取并转换为 hide bit 和 combine bit 。负责该转换的函数如下所示：
+这些注册表值随后会被 *explorer.exe* 进程读取并转换为 `hide bit` 和 `combine bit` 。负责该转换的函数如下所示：
 
 ```Assembly
 0x7FF69EA67590:
@@ -64,17 +67,17 @@ explorer.exe+575ED - BB 01000000           - mov ebx,00000001
 explorer.exe+575F2 - EB EC                 - jmp explorer.exe+575E0
 ```
 
-现在，我们的需求是`从不合并，隐藏标签`，一种实现方法是修改下拉菜单`合并任务栏按钮`中某一现有选项的 hide bit 和 combine bit，这是我目前的选择：
-将指令
+我们的需求是 `从不合并，隐藏标签` ，一种实现方法是修改下拉菜单 `合并任务栏按钮` 中某一现有选项的 `hide bit` 和 `combine bit` ，这是我目前的选择。
 
-```
+将指令
+```Assembly
 explorer.exe+575ED - BB 01000000           - mov ebx,00000001
 ```
 修改为
-```
+```Assembly
 explorer.exe+575ED - BB 02000000           - mov ebx,00000002
 ```
 
-这一操作会使下拉菜单`合并任务栏按钮`中`任务栏已满时`选项的实际功能变更为`从不合并，隐藏标签`功能。
+这一操作会使下拉菜单 `合并任务栏按钮` 中 `任务栏已满时` 选项的实际功能变更为 `从不合并，隐藏标签` 功能。
 <br><br><br>
-可实现`从不合并，隐藏标签`的第三方工具：[7+ Taskbar Tweaker](http://rammichael.com/7-taskbar-tweaker) （官方支持中文）
+可实现 `从不合并，隐藏标签` 的第三方工具：[7+ Taskbar Tweaker](http://rammichael.com/7-taskbar-tweaker) （官方支持中文）
