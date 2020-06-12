@@ -16,36 +16,36 @@
 
 ### 编程开发
 1. IDE
-1.1 Eclipse
-1.2 IntelliJ IDEA
-1.3 Visual Studio
+  1. Eclipse
+  2. IntelliJ IDEA
+  3. Visual Studio
 2. SDK
-2.1 JDK
+  1. JDK
 3. 文本处理
-3.1 Sublime Text
-3.2 VSCode
-3.3 Beyond Compare
-3.4 Notepad++
-3.5 EmEditor
-3.6 Sakura
+  1. Sublime Text
+  2. VSCode
+  3. Beyond Compare
+  4. Notepad++
+  5. EmEditor
+  6. Sakura
 4. 版本控制
-4.1 Github Desktop
-4.2 Maven
-4.3 TortoiseSVN
+  1. Github Desktop
+  2. Maven
+  3. TortoiseSVN
 5. 数据库
-5.1 Navicat
-5.2 A5M2
+  1. Navicat
+  2. A5M2
 6. Web容器
-6.1 Tomcat
+  1. Tomcat
 7. 通信
-7.1 Cmder
-7.2 Postman
-7.3 Nmap
-7.4 RDCMan
-7.5 Fiddler
-7.6 WinSCP
+  1. Cmder
+  2. Postman
+  3. Nmap
+  4. RDCMan
+  5. Fiddler
+  6. WinSCP
 8. 字体
-8.1 YaHei Consolas Hybrid
+  1. YaHei Consolas Hybrid
 
 ### 其它
 1. Everything
